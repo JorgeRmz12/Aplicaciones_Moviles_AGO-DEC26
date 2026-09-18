@@ -1,33 +1,49 @@
 import { Tabs } from 'expo-router';
-import React from 'react';
-
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { Text } from 'react-native';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
+        tabBarActiveTintColor: '#E74C3C',
+        tabBarInactiveTintColor: '#888',
+        tabBarStyle: {
+          paddingBottom: 6,
+          paddingTop: 6,
+          height: 60,
+        },
+      }}
+    >
+      {/* Ocultar la pestaña explore por completo */}
       <Tabs.Screen
         name="explore"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          href: null,
+        }}
+      />
+
+      <Tabs.Screen
+        name="index"
+        options={{
+          title: 'Inicio',
+          tabBarIcon: () => <Text style={{ fontSize: 18 }}>🏠</Text>,
+        }}
+      />
+
+      <Tabs.Screen
+        name="escribir"
+        options={{
+          title: 'Escribir',
+          tabBarIcon: () => <Text style={{ fontSize: 18 }}>✍️</Text>,
+        }}
+      />
+
+      <Tabs.Screen
+        name="perfil"
+        options={{
+          title: 'Perfil',
+          tabBarIcon: () => <Text style={{ fontSize: 18 }}>👤</Text>,
         }}
       />
     </Tabs>
